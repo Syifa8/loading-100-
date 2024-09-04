@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loading Animation</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .loader-container {
+            text-align: center;
+        }
+
+        .loader-bar {
+            width: 300px;
+            height: 30px;
+            background-color: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .loader-progress {
+            height: 100%;
+            background-color: #007bff;
+            width: 0;
+            border-radius: 15px;
+        }
+
+        .loader-text {
+            font-size: 18px;
+            color: #343a40;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader-container">
+        <div class="loader-bar">
+            <div class="loader-progress"></div>
+        </div>
+        <div class="loader-text">Loading... 0%</div>
+    </div>
+
+    <script>
+        const loaderProgress = document.querySelector('.loader-progress');
+        const loaderText = document.querySelector('.loader-text');
+        let progress = 0;
+
+        function updateLoader() {
+            progress += 1;
+            loaderProgress.style.width = progress + '%';
+            loaderText.textContent = `Loading... ${progress}%`;
+
+            if (progress < 100) {
+                setTimeout(updateLoader, 50); // Adjust this value to control the speed
+            } else {
+                loaderText.textContent = "Complete!";
+            }
+        }
+
+        updateLoader();
+    </script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
